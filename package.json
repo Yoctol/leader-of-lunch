@@ -1,0 +1,26 @@
+{
+  "name": "lol-v2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx bottender dev",
+    "lint": "eslint .",
+    "start": "bottender start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "bookshelf": "^1.0.1",
+    "bookshelf-modelbase": "^2.10.4",
+    "bottender": "1.0.0-alpha.20",
+    "knex": "^0.19.5",
+    "lodash": "^4.17.15",
+    "pg": "^7.12.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2"
+  }
+}
