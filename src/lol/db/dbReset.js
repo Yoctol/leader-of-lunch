@@ -2,7 +2,7 @@ const knex = require('knex')
 
 class DB{
   constructor(){
-    this.knexConfig = require('./knexfile').development
+    this.knexConfig = require('./knexfile')[process.env.ENV]
     this.databaseName = this.knexConfig.connection.database
     this.knexConfigWithoutDatabase = {
       client: this.knexConfig.client,

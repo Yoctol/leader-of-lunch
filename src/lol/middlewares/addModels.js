@@ -1,4 +1,4 @@
-const db = require('knex')(require('../db/knexfile').development);
+const db = require('knex')(require('../db/knexfile')[process.env.ENV]);
 const models = require('../db/models')(db);
 
 module.exports = async function AddModels(context, { next }){

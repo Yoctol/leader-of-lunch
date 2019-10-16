@@ -1,4 +1,4 @@
-const db = require('knex')(require('./knexfile').development);
+const db = require('knex')(require('./knexfile')[process.env.ENV]);
 
 async function run_seed(db) {
   try {
