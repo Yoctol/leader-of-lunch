@@ -1,9 +1,6 @@
-module.exports = async function RestaurantsDelete(context, {next, params}){
+module.exports = async function RestaurantsDelete(context, {next, match}){
   const channel_id = context.channel.attributes.id
-  // const name  = params.name
-
-  let name = context.text.match(/刪除(?<name>.+)/).groups.name
-  name = name.trim();
+  let name  = match.groups.name.trim();
 
   try {
     await context.models.Restaurant.where({

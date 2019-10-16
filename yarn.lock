@@ -1134,10 +1134,10 @@ bookshelf@^1.0.1:
     inflection "^1.12.0"
     lodash "^4.17.15"
 
-bottender@1.0.0-alpha.20:
-  version "1.0.0-alpha.20"
-  resolved "https://registry.yarnpkg.com/bottender/-/bottender-1.0.0-alpha.20.tgz#8b1f013cfcb7560b714275abe2d4d52bce939a3d"
-  integrity sha512-fNv3Jzm+3H9f+PYkwWrtzElZ5H3VFwyp7cXJVllD2/147eOQF+cw3Ep3LQRpEzLeZrGuiF9wqeoB4KbDj/i6TA==
+bottender@1.0.0-alpha.21:
+  version "1.0.0-alpha.21"
+  resolved "https://registry.yarnpkg.com/bottender/-/bottender-1.0.0-alpha.21.tgz#993cf7b91ab808f4b5ba2ffb1e706674482c9771"
+  integrity sha512-EhuPNZDxcYXUaODwMmluOhQIoZetfPknwgHftMDNU9Ni71J8uM7NzdFUEvGSdfit0SCUTO2kbgDd+ILBMwaq8w==
   dependencies:
     "@bottender/express" "^1.0.0-alpha.7"
     "@hapi/joi" "^15.1.1"
