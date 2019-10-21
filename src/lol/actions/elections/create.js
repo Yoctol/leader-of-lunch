@@ -1,4 +1,18 @@
-module.exports = async function ElectionsCreate(context, {next, params}){
+const { router, platform } = require('bottender/router');
+const createTelegram = require('./createTelegram')
+const createText = require('./createText')
+
+function render(context, viewModel){
+  // view
+  context.viewModel = viewModel;
+
+  return router([
+    platform('telegram', createTelegram ),
+    platform('*', createText ),
+  ])
+}
+
+module.exports = async function ElectionsCreate(context, props){
   const election = await context.channel.elections().create()
   const restaurants = await context.channel.restaurants().query((qb)=>{
     qb.select('*')
@@ -12,5 +26,6 @@ module.exports = async function ElectionsCreate(context, {next, params}){
   }
 
   const sampleNames = restaurants.map(restaurant => restaurant.attributes.name)
-  await context.sendText(`想吃什麼\n${sampleNames.join('\n')}`);
+
+  return render(context, { restaurants: sampleNames })
 }

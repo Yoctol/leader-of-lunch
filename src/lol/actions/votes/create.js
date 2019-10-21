@@ -1,20 +1,17 @@
 const getNumber = (text)=>{
-  switch (text) {
-    case "1":
-    case "one":
-      return 1;
-    case "2":
-    case "two":
-      return 2;
-    case "3":
-    case "three":
-      return 3;
-    case "4":
-    case "four":
-      return 4;
-    default:
-      return 0;
+  if (text.startsWith('1') || text.startsWith('one')) {
+    return 1;
   }
+  if (text.startsWith('2') || text.startsWith('two')) {
+    return 2;
+  }
+  if (text.startsWith('3') || text.startsWith('three')) {
+    return 3;
+  }
+  if (text.startsWith('4') || text.startsWith('four')) {
+    return 4;
+  }
+  return 0;
 }
 
 module.exports = async function VotesCreate(context, {next, params}){
@@ -22,15 +19,10 @@ module.exports = async function VotesCreate(context, {next, params}){
   if(n == 0){
     return await context.sendText(`voteCreate 壞了`);
   }
-  console.log(1)
   const election = await context.channel.lastElection()
-  console.log(2)
   const option = await election.option(n)
-  console.log(3)
   const restaurant = await option.restaurant().fetch()
-  console.log(4)
   const lastVote = await context.user.lastVote()
-  console.log(5)
   let lastVoteOption = null
   if(lastVote != null)
     lastVoteOption = await lastVote.electionOption().fetch()

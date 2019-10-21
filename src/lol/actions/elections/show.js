@@ -1,11 +1,24 @@
 const _ = require('lodash')
+const { router, platform } = require('bottender/router');
+
+const showTelegram = require('./showTelegram')
+const showText = require('./showText')
+
+function render(context, viewModel = {}){
+  // view
+  context.viewModel = viewModel;
+
+  return router([
+    platform('telegram', showTelegram ),
+    platform('*', showText ),
+  ])
+}
 
 module.exports = async function ElectionsShow(context, {next, params}){
   // get last election in this channel
   const election = await context.channel.lastElection()
   if(election === null){
-    await context.sendText("你要先吃飯嗎？");
-    return
+    return render(context)
   }
 
   const options = await context.models.ElectionOption
@@ -22,11 +35,12 @@ module.exports = async function ElectionsShow(context, {next, params}){
     .map(vote => options.find({id: vote.attributes.election_option_id}))
     .map(option => restaurants.find({id: option.attributes.restaurant_id}))
     .map(restaurant => restaurant.attributes.name )
+    .concat(restaurants.map(restaurant => restaurant.attributes.name))
 
   const groupedNames = _.countBy(restaurantNames)
-  const orderedNames = _.map(groupedNames,(count, name) => { return { name, count }})
+  const orderedNames = _.map(groupedNames,(count, name) => { return { name, count: count - 1 }})
                        .sort((a,b) => b.count - a.count)
 
-  const result = orderedNames.map(o => `${o.name}: ${o.count}`).join('\n')
-  await context.sendText(`票選統計結果：\n${result}`);
+  return render(context, {options: orderedNames})
+
 }
