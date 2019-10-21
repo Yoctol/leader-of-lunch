@@ -14,6 +14,7 @@ async function deleteRestaurant(context, channelId, name){
       success: true
     };
   } catch (error) {
+    console.log(error)
     return {
       name,
       success: false

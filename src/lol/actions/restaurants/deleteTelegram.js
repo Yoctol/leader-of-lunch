@@ -1,4 +1,4 @@
-module.exports = async function RestaurantsDeleteText(context, props){
+module.exports = async function RestaurantsDeleteTelegram(context, props){
   if(context.viewModel == undefined){
     await context.sendText(`刪除餐廳失敗。`)
     return
