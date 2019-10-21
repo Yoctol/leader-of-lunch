@@ -16,6 +16,7 @@ module.exports = (db) => {
   const bookshelf = new Bookshelf(db);
   const ModelBase = require('bookshelf-modelbase')(bookshelf);
   bookshelf.plugin(require('bookshelf-modelbase').pluggable);
+  bookshelf.plugin(require('bookshelf-soft-delete'));
 
   const Channel = ModelBase.extend({
     tableName: 'channels',
@@ -45,6 +46,7 @@ module.exports = (db) => {
 
   const Restaurant = ModelBase.extend({
     tableName: 'restaurants',
+    soft: ['deleted_at'],
     channel: function() {
       return this.belongsTo(Channel);
     },

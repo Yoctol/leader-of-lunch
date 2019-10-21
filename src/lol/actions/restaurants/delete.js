@@ -8,7 +8,10 @@ async function deleteRestaurant(context, channelId, name){
     await context.models.Restaurant.where({
       channel_id: channelId,
       name,
-    }).destroy()
+    }).save(
+      { deleted_at: new Date() },
+      {method: 'update', patch: true}
+    )
     return {
       name,
       success: true

@@ -26,7 +26,7 @@ module.exports = async function ElectionsShow(context, {next, params}){
     .fetchAll()
   const restaurants = await context.models.Restaurant
     .where('id', 'in', options.models.map(option => option.attributes.restaurant_id))
-    .fetchAll()
+    .fetchAll({softDelete: false})
   const votes = await context.models.Vote
     .where('election_option_id', 'in', options.models.map(o => o.attributes.id))
     .fetchAll()

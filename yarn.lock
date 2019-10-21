@@ -1124,6 +1124,11 @@ bookshelf-modelbase@^2.10.4:
     lodash.difference "^4.4.0"
     xtend "^4.0.1"
 
+bookshelf-soft-delete@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/bookshelf-soft-delete/-/bookshelf-soft-delete-5.0.0.tgz#2248da016545201517dc75b09ef584c4cff45fbb"
+  integrity sha512-255xcCcRtQiQhErBlsXwBMdqNF+180cTzCdr04/JhcFmA2wMnQHZ9Ur/NkpBPxi2ZJwo8aRimJiY9w8+1HFBtQ==
+
 bookshelf@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/bookshelf/-/bookshelf-1.0.1.tgz#0671b28d6bfb7b575633f621c380b26a3ce80ca0"

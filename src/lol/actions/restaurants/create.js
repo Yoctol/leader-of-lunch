@@ -5,7 +5,12 @@ const createText = require('./createText')
 
 async function createRestaurant(context, name){
   try {
-    await context.channel.restaurants().create({name})
+    const deletedRestaurants = await context.channel.restaurants().where({ name }).fetchOne({ softDelete: false, require: false })
+    if(deletedRestaurants != null){
+      await deletedRestaurants.save({ deleted_at: null });
+    }else{
+      await context.channel.restaurants().create({name})
+    }
     return {
       name,
       success: true
