@@ -28,7 +28,7 @@ module.exports = async function Actions(context, {next}){
     text(/走|出發|統計/, electionShow),
     text(/^(1|2|3|4|one|two|three|four).*$/, voteCreate),
     text(/^我是?誰/, userShow),
-    text(/^叫我(?<name>.+)/, userUpdate),
+    text(/^(叫我|我叫|我是)(?<name>.+)/, userUpdate),
     text("*", debug),
   ])
 }
