@@ -26,7 +26,7 @@ module.exports = async function Actions(context, {next}){
     text(/新增(?<name>.+)/, restaurantCreate),
     text(/刪除(?<name>.+)/, restaurantDelete),
     text(/不吃|pass/, voteDelete),
-    text(/餓|吃|午餐/, electionCreate),
+    text(/^(餓|想?吃|午餐)/, electionCreate),
     text(/走|出發|統計/, electionShow),
     text(/^(1|2|3|4|one|two|three|four).*$/, voteCreate),
     text("*", debug),

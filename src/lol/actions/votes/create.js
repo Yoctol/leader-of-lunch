@@ -27,14 +27,16 @@ module.exports = async function VotesCreate(context, {next, params}){
   if(lastVote != null)
     lastVoteOption = await lastVote.electionOption().fetch()
 
+  const userName = context.user.attributes.name || '那個誰'
+
   if(lastVoteOption === null || lastVoteOption.attributes.election_id != election.attributes.id){
     // create vote
     await option.votes().create({ user_id: context.user.attributes.id })
-    await context.sendText(`${context.user.attributes.name}說他想吃${restaurant.attributes.name}`);
+    await context.sendText(`${userName}說他想吃${restaurant.attributes.name}`);
   }else{
     // update vote
     await lastVote.save({ election_option_id: option.attributes.id })
-    await context.sendText(`${context.user.attributes.name}說他改吃${restaurant.attributes.name}`);
+    await context.sendText(`${userName}說他改吃${restaurant.attributes.name}`);
   }
 
 }
