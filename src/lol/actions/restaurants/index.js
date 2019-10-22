@@ -1,6 +1,7 @@
 const { router, platform } = require('bottender/router');
 
 const indexTelegram = require('./indexTelegram')
+const indexLine = require('./indexLine')
 const indexText = require('./indexText')
 
 function render(context, viewModel = {}){
@@ -9,6 +10,7 @@ function render(context, viewModel = {}){
 
   return router([
     platform('telegram', indexTelegram ),
+    platform('line', indexLine ),
     platform('*', indexText ),
   ])
 }

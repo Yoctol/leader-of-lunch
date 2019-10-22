@@ -1,4 +1,4 @@
-module.exports = async function ElectionsShowText(context, props){
+module.exports = async function ElectionsShowLine(context, props){
   const options = context.viewModel.options;
 
   if(options == null){

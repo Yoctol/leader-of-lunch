@@ -1,6 +1,7 @@
 const { router, platform } = require('bottender/router');
 
 const deleteTelegram = require('./deleteTelegram')
+const deleteLine = require('./deleteLine')
 const deleteText = require('./deleteText')
 
 async function deleteRestaurant(context, channelId, name){
@@ -31,6 +32,7 @@ function render(context, viewModel = {}){
 
   return router([
     platform('telegram', deleteTelegram ),
+    platform('line', deleteLine ),
     platform('*', deleteText ),
   ])
 }

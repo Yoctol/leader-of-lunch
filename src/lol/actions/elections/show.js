@@ -2,6 +2,7 @@ const _ = require('lodash')
 const { router, platform } = require('bottender/router');
 
 const showTelegram = require('./showTelegram')
+const showLine = require('./showLine')
 const showText = require('./showText')
 
 function render(context, viewModel = {}){
@@ -10,6 +11,7 @@ function render(context, viewModel = {}){
 
   return router([
     platform('telegram', showTelegram ),
+    platform('line', showLine ),
     platform('*', showText ),
   ])
 }

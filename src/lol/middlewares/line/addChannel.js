@@ -1,5 +1,6 @@
 module.exports = async function AddChannel(context, { next }){
-  const key = context.event.rawEvent.channel || context.event.rawEvent.item.channel
+  const source = context.event.rawEvent.source
+  const key = source.groupId || source.roomId || source.userId
   console.log(`set channel ${key}`)
 
   context.channel = await context.models.Channel.findOrCreate({key})

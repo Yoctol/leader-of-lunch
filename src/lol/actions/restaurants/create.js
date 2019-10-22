@@ -1,6 +1,7 @@
 const { router, platform } = require('bottender/router');
 
 const createTelegram = require('./createTelegram')
+const createLine = require('./createLine')
 const createText = require('./createText')
 
 async function createRestaurant(context, name){
@@ -30,6 +31,7 @@ function render(context, viewModel = {}){
 
   return router([
     platform('telegram', createTelegram ),
+    platform('line', createLine ),
     platform('*', createText ),
   ])
 }
