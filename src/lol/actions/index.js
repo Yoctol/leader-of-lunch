@@ -21,7 +21,7 @@ module.exports = async function Actions(context, {next}){
   return router([
     {
       predicate: (context) => context.text == 'follow' || context.text == 'join',
-      menu,
+      action: menu,
     },
     text(/menu|help|午餐隊長|教學/, menu),
     text(/^餐廳/, restaurantIndex),
