@@ -1,4 +1,4 @@
-module.exports = async function Menu(context, { next }){
+module.exports = async function Menu(context) {
   await context.sendText(`使用者相關指令：
   查看暱稱：「我誰」
   修改暱稱：「叫我{暱稱}」
@@ -14,4 +14,4 @@ module.exports = async function Menu(context, { next }){
   參與投票：「1」「2」「3」「4」
   顯示統計：「走|出發|統計」
 `);
-}
+};

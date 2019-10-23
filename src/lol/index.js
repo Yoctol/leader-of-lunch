@@ -1,10 +1,7 @@
 const { chain } = require('bottender');
-const middlewares = require('./middlewares')
-const actions = require('./actions')
+const middlewares = require('./middlewares');
+const actions = require('./actions');
 
-module.exports = async function LOL(){
-  return chain([
-    middlewares,
-    actions
-  ]);
-}
+module.exports = async function LOL() {
+  return chain([middlewares, actions]);
+};

@@ -1,4 +1,4 @@
-const getNumber = (text)=>{
+const getNumber = text => {
   if (text.startsWith('1') || text.startsWith('one')) {
     return 1;
   }
@@ -12,31 +12,33 @@ const getNumber = (text)=>{
     return 4;
   }
   return 0;
-}
+};
 
-module.exports = async function VotesCreate(context, {next, params}){
-  const n = getNumber(context.text)
-  if(n == 0){
+module.exports = async function VotesCreate(context) {
+  const n = getNumber(context.text);
+  if (n == 0) {
     return await context.sendText(`voteCreate 壞了`);
   }
-  const election = await context.channel.lastElection()
-  const option = await election.option(n)
-  const restaurant = await option.restaurant().fetch()
-  const lastVote = await context.user.lastVote()
-  let lastVoteOption = null
-  if(lastVote != null)
-    lastVoteOption = await lastVote.electionOption().fetch()
+  const election = await context.channel.lastElection();
+  const option = await election.option(n);
+  const restaurant = await option.restaurant().fetch();
+  const lastVote = await context.user.lastVote();
+  let lastVoteOption = null;
+  if (lastVote != null)
+    lastVoteOption = await lastVote.electionOption().fetch();
 
-  const userName = context.user.attributes.name || '那個誰'
+  const userName = context.user.attributes.name || '那個誰';
 
-  if(lastVoteOption === null || lastVoteOption.attributes.election_id != election.attributes.id){
+  if (
+    lastVoteOption === null ||
+    lastVoteOption.attributes.election_id != election.attributes.id
+  ) {
     // create vote
-    await option.votes().create({ user_id: context.user.attributes.id })
+    await option.votes().create({ user_id: context.user.attributes.id });
     await context.sendText(`${userName}說他想吃${restaurant.attributes.name}`);
-  }else{
+  } else {
     // update vote
-    await lastVote.save({ election_option_id: option.attributes.id })
+    await lastVote.save({ election_option_id: option.attributes.id });
     await context.sendText(`${userName}說他改吃${restaurant.attributes.name}`);
   }
-
-}
+};

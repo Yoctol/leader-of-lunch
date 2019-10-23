@@ -1,4 +1,4 @@
-const Bookshelf = require('bookshelf')
+const Bookshelf = require('bookshelf');
 
 // async function optional(func){
 //   try{
@@ -12,7 +12,7 @@ const Bookshelf = require('bookshelf')
 //   }
 // }
 
-module.exports = (db) => {
+module.exports = db => {
   const bookshelf = new Bookshelf(db);
   const ModelBase = require('bookshelf-modelbase')(bookshelf);
   bookshelf.plugin(require('bookshelf-modelbase').pluggable);
@@ -26,22 +26,24 @@ module.exports = (db) => {
     elections: function() {
       return this.hasMany(Election);
     },
-    restaurantNames: async function(){
+    restaurantNames: async function() {
       const restaurants = await this.restaurants().fetch();
-      return restaurants.models.map(restaurant => restaurant.attributes.name)
+      return restaurants.models.map(restaurant => restaurant.attributes.name);
     },
     lastElection: async function() {
       // return await optional(this.elections().orderBy('id', 'desc').fetchOne)
-      try{
-        return await this.elections().orderBy('id', 'desc').fetchOne()
-      }catch(e){
-        if(e.message == 'EmptyResponse'){
+      try {
+        return await this.elections()
+          .orderBy('id', 'desc')
+          .fetchOne();
+      } catch (e) {
+        if (e.message == 'EmptyResponse') {
           return null;
-        }else{
+        } else {
           throw e;
         }
       }
-    }
+    },
   });
 
   const Restaurant = ModelBase.extend({
@@ -52,7 +54,7 @@ module.exports = (db) => {
     },
     electionOptions: function() {
       return this.hasMany(ElectionOption);
-    }
+    },
   });
 
   const Election = ModelBase.extend({
@@ -64,8 +66,10 @@ module.exports = (db) => {
       return this.hasMany(ElectionOption);
     },
     option: async function(index) {
-      return await this.electionOptions().query({where:{index}}).fetchOne()
-    }
+      return await this.electionOptions()
+        .query({ where: { index } })
+        .fetchOne();
+    },
   });
 
   const ElectionOption = ModelBase.extend({
@@ -78,22 +82,24 @@ module.exports = (db) => {
     },
     votes: function() {
       return this.hasMany(Vote);
-    }
+    },
   });
 
   const User = ModelBase.extend({
     tableName: 'users',
     votes: function() {
-      return this.hasMany(Vote)
+      return this.hasMany(Vote);
     },
     lastVote: async function() {
       // return await optional(this.votes().orderBy('id', 'desc').fetchOne.bind(this))
-      try{
-        return await this.votes().orderBy('id', 'desc').fetchOne()
-      }catch(e){
-        if(e.message == 'EmptyResponse'){
+      try {
+        return await this.votes()
+          .orderBy('id', 'desc')
+          .fetchOne();
+      } catch (e) {
+        if (e.message == 'EmptyResponse') {
           return null;
-        }else{
+        } else {
           throw e;
         }
       }
@@ -103,12 +109,12 @@ module.exports = (db) => {
   const Vote = ModelBase.extend({
     tableName: 'votes',
     user: function() {
-      return this.belongsTo(User)
+      return this.belongsTo(User);
     },
     electionOption: function() {
       return this.belongsTo(ElectionOption);
     },
-  })
+  });
 
   return {
     Channel,
@@ -117,5 +123,5 @@ module.exports = (db) => {
     ElectionOption,
     User,
     Vote,
-  }
-}
+  };
+};
