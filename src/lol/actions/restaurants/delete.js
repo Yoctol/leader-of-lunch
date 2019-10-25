@@ -1,8 +1,4 @@
-const { router, platform } = require('bottender/router');
-
-const deleteTelegram = require('./deleteTelegram');
-const deleteLine = require('./deleteLine');
-const deleteText = require('./deleteText');
+const render = require('../render');
 
 async function deleteRestaurant(context, channelId, name) {
   try {
@@ -23,17 +19,6 @@ async function deleteRestaurant(context, channelId, name) {
   }
 }
 
-function render(context, viewModel = {}) {
-  // view
-  context.viewModel = viewModel;
-
-  return router([
-    platform('telegram', deleteTelegram),
-    platform('line', deleteLine),
-    platform('*', deleteText),
-  ]);
-}
-
 module.exports = async function RestaurantsDelete(context, { match }) {
   const channelId = context.channel.attributes.id;
   const name = match.groups.name.trim();
@@ -47,5 +32,5 @@ module.exports = async function RestaurantsDelete(context, { match }) {
     })
   );
 
-  return render(context, { restaurants });
+  return render('restaurants/delete', { restaurants });
 };

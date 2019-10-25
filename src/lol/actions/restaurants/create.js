@@ -1,8 +1,5 @@
-const { router, platform } = require('bottender/router');
 
-const createTelegram = require('./createTelegram');
-const createLine = require('./createLine');
-const createText = require('./createText');
+const render = require('../render');
 
 async function createRestaurant(context, name) {
   try {
@@ -28,17 +25,6 @@ async function createRestaurant(context, name) {
   }
 }
 
-function render(context, viewModel = {}) {
-  // view
-  context.viewModel = viewModel;
-
-  return router([
-    platform('telegram', createTelegram),
-    platform('line', createLine),
-    platform('*', createText),
-  ]);
-}
-
 module.exports = async function RestaurantsCreate(context, { match }) {
   const name = match.groups.name.trim();
   if (name === undefined) {
@@ -51,5 +37,5 @@ module.exports = async function RestaurantsCreate(context, { match }) {
     })
   );
 
-  return render(context, { restaurants });
+  return render('restaurants/create', { restaurants });
 };

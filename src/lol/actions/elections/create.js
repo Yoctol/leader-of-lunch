@@ -1,18 +1,4 @@
-const { router, platform } = require('bottender/router');
-const createTelegram = require('./createTelegram');
-const createLine = require('./createLine');
-const createText = require('./createText');
-
-function render(context, viewModel) {
-  // view
-  context.viewModel = viewModel;
-
-  return router([
-    platform('telegram', createTelegram),
-    platform('line', createLine),
-    platform('*', createText),
-  ]);
-}
+const render = require('../render');
 
 module.exports = async function ElectionsCreate(context) {
   const election = await context.channel.elections().create();
@@ -34,5 +20,5 @@ module.exports = async function ElectionsCreate(context) {
 
   const sampleNames = restaurants.map(restaurant => restaurant.attributes.name);
 
-  return render(context, { restaurants: sampleNames });
+  return render('elections/create', { restaurants: sampleNames })
 };

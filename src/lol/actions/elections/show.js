@@ -1,20 +1,5 @@
 const _ = require('lodash');
-const { router, platform } = require('bottender/router');
-
-const showTelegram = require('./showTelegram');
-const showLine = require('./showLine');
-const showText = require('./showText');
-
-function render(context, viewModel = {}) {
-  // view
-  context.viewModel = viewModel;
-
-  return router([
-    platform('telegram', showTelegram),
-    platform('line', showLine),
-    platform('*', showText),
-  ]);
-}
+const render = require('../render');
 
 module.exports = async function ElectionsShow(context) {
   // get last election in this channel
@@ -48,5 +33,5 @@ module.exports = async function ElectionsShow(context) {
     return { name, count: count - 1 };
   }).sort((a, b) => b.count - a.count);
 
-  return render(context, { options: orderedNames });
+  return render('elections/show', { options: orderedNames });
 };
