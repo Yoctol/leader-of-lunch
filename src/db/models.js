@@ -1,17 +1,5 @@
 const Bookshelf = require('bookshelf');
 
-// async function optional(func){
-//   try{
-//     return await func()
-//   }catch(e){
-//     if(e.message == 'EmptyResponse'){
-//       return null;
-//     }else{
-//       throw e;
-//     }
-//   }
-// }
-
 module.exports = db => {
   const bookshelf = new Bookshelf(db);
   const ModelBase = require('bookshelf-modelbase')(bookshelf);
@@ -20,6 +8,9 @@ module.exports = db => {
 
   const Channel = ModelBase.extend({
     tableName: 'channels',
+    users: function(){
+      return this.belongsToMany('User')
+    },
     restaurants: function() {
       return this.hasMany(Restaurant);
     },
