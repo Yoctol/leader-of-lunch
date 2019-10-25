@@ -1,4 +1,4 @@
-module.exports = async function AddUser(context, { next }) {
+module.exports = async function SlackAddUser(context, { next }) {
   const key = context.event.rawEvent.user;
   console.log(`set user ${key}`);
 

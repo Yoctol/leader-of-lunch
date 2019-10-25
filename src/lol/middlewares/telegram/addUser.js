@@ -1,4 +1,4 @@
-module.exports = async function AddUser(context, { next }) {
+module.exports = async function TelegramAddUser(context, { next }) {
   const key = context.event.rawEvent.message.from.id;
   console.log(`set user ${key}`);
 

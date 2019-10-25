@@ -1,4 +1,4 @@
-module.exports = async function AddText(context, { next }) {
+module.exports = async function SlackAddText(context, { next }) {
   context.text = context.event.text;
 
   // reaction removed feature

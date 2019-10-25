@@ -1,4 +1,4 @@
-module.exports = async function AddText(context, { next }) {
+module.exports = async function LineAddText(context, { next }) {
   context.text = context.event.text || context.event.rawEvent.type;
 
   // // default

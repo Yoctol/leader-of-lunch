@@ -1,4 +1,4 @@
-module.exports = async function AddUser(context, { next }) {
+module.exports = async function LineAddUser(context, { next }) {
   const source = context.event.rawEvent.source;
   const key = source.userId;
   if (key == undefined) {

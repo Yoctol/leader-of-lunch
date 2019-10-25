@@ -1,4 +1,4 @@
-module.exports = async function AddChannel(context, { next }) {
+module.exports = async function TelegramAddChannel(context, { next }) {
   const key = context.event.rawEvent.message.chat.id;
   console.log(`set channel ${key}`);
 
