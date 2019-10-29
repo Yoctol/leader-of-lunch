@@ -1,0 +1,19 @@
+{
+  // 使用 IntelliSense 以得知可用的屬性。
+  // 暫留以檢視現有屬性的描述。
+  // 如需詳細資訊，請瀏覽: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+      //https://medium.com/@dupski/debug-typescript-in-vs-code-without-compiling-using-ts-node-9d1f4f9a94a
+      {
+        "name": "Current TS File",
+        "type": "node",
+        "request": "launch",
+        "args": ["${relativeFile}"],
+        "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+        "sourceMaps": true,
+        "cwd": "${workspaceRoot}",
+        "protocol": "inspector",
+      }
+  ]
+}

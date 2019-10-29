@@ -1,0 +1,37 @@
+// {
+//    "compilerOptions": {
+//       "lib": [
+//          "es5",
+//          "es6"
+//       ],
+//       "target": "es5",
+//       "module": "commonjs",
+//       "moduleResolution": "node",
+//       "outDir": "./out",
+//       "emitDecoratorMetadata": true,
+//       "experimentalDecorators": true,
+//       "sourceMap": true
+//    }
+// }
+
+{
+   "include": ["src/**/*"],
+   "exclude": ["**/__tests__", "**/*.{spec,test}.ts"],
+   "compilerOptions": {
+     "target": "es5",
+     "lib": ["es2017", "esnext.asynciterable"],
+     "module": "commonjs",
+     "skipLibCheck": true,
+     "moduleResolution": "node",
+     "esModuleInterop": true,
+     "emitDecoratorMetadata": true,
+     "experimentalDecorators": true,
+     // "strict": true,
+     "forceConsistentCasingInFileNames": true,
+     "resolveJsonModule": true,
+     "isolatedModules": true,
+     "rootDir": "./src",
+     "outDir": "./dist",
+     "types": ["node", "jest"]
+   }
+ }
