@@ -6,7 +6,8 @@
     "dev": "npx bottender dev",
     "lint": "eslint '*/**/*.ts' --fix",
     "start": "bottender start",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "dependencies": {
     "@types/node": "^12.11.7",
