@@ -19,10 +19,10 @@ export default class User extends Base{
 
   async lastVote(){
     const vote = await Vote.find({
-      select: ["optionId"]
       where: {
         user: this
       },
+      relations: ["option"],
       order: {
         id: "DESC"
       },

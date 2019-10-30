@@ -1,4 +1,5 @@
-import Option from '../../entity/Option'
+// import Option from '../../entity/Option'
+import Vote from '../../entity/Vote'
 
 const getNumber = text => {
   if (text.startsWith('1') || text.startsWith('one')) {
@@ -24,19 +25,20 @@ export default async function VotesCreate(context) {
 
   const election = await context.channel.lastElection();
   const pickedOption = election.options.filter(option => option.index === n)[0]
-  const lastVote: Option = await context.user.lastVote();
-  const lastVoteOptionId = lastVote?.optionId
-
+  const lastVote = await context.user.lastVote();
   const userName = context.user.name || '那個誰';
 
-  if (election.options.map((o)=>{return o.id }).includes(lastVoteOptionId)) {
-    // update vote
+  if (election.options.map((o)=>{return o.id }).includes(lastVote?.option?.id)) {
+      // update vote
     lastVote.option = pickedOption
     await lastVote.save()
     await context.sendText(`${userName}說他改吃${pickedOption.restaurant.name}`);
   } else {
     // create vote
-    await option.votes().create({ user_id: context.user.attributes.id });
-    await context.sendText(`${userName}說他想吃${restaurant.attributes.name}`);
+    const vote = new Vote()
+    vote.user = context.user
+    vote.option = pickedOption
+    await vote.save()
+    await context.sendText(`${userName}說他想吃${pickedOption.restaurant.name}`);
   }
 };

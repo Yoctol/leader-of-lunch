@@ -15,6 +15,6 @@ export default class Option extends Base{
   @ManyToOne(type => Election, election => election.options, { nullable: false })
   election: Election;
 
-  @OneToMany(type => Vote, vote => vote.option)
-  votes: Promise<Vote[]>;
+  @OneToMany(type => Vote, vote => vote.option, { eager: true })
+  votes: Vote[];
 }

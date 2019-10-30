@@ -12,11 +12,7 @@ export default async function RestaurantsCreateText(context) {
 
   const desc = restaurants
     .map(restaurant => {
-      if (restaurant.success) {
-        return `新增 ${restaurant.name} 成功`;
-      } else {
-        return `新增 ${restaurant.name} 失敗`;
-      }
+      return `新增 ${restaurant.name} 成功`
     })
     .join('\n');
 

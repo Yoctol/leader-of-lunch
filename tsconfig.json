@@ -32,6 +32,7 @@
      "isolatedModules": true,
      "rootDir": "./src",
      "outDir": "./dist",
-     "types": ["node", "jest"]
+     "types": ["node", "jest"],
+     "strict": false
    }
  }

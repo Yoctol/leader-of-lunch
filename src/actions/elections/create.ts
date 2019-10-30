@@ -19,7 +19,6 @@ export default async function ElectionsCreate(context) {
     .getMany()
 
   const restaurants = channelRestaurants.map((cr) => { return cr.restaurant })
-  console.log(restaurants)
 
   // join to options
   const options = []

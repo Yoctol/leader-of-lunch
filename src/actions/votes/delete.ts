@@ -1,12 +1,21 @@
 export default async function VotesDelete(context) {
+  const userName = context.user.name || '那個誰';
+
   const election = await context.channel.lastElection();
   const lastVote = await context.user.lastVote();
-  if (lastVote == null) return;
 
-  let lastVoteOption = await lastVote.electionOption().fetch();
-  if (lastVoteOption === null) return;
-  if (lastVoteOption.attributes.election_id != election.attributes.id) return;
+  if (lastVote == null){
+    await context.sendText(`${userName}說他不吃`);
+    return;
+  }
 
-  await lastVote.destroy();
-  await context.sendText(`${context.user.attributes.name}說他不吃惹`);
+  if (lastVote.option === null){
+    await context.sendText(`${userName}說他不吃`);
+    return;
+  }
+
+  if (!election.options.map((o)=> o.id).includes(lastVote?.option?.id)) return;
+  await lastVote.remove();
+
+  await context.sendText(`${userName}說他不吃惹`);
 };

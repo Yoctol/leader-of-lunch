@@ -6,7 +6,7 @@ export default async function ElectionsShowLine(context) {
     return;
   }
 
-  const result = options.map(o => `${o.name}: ${o.count}`).join('\n');
-  const conclusion = `結論：吃${options[0].name}`;
+  const result = options.map(o => `${o.restaurant.name}: ${o.votes.length}`).join('\n');
+  const conclusion = `結論：吃${options[0].restaurant.name}`;
   await context.sendText(`本日午餐票選結果：\n${result}\n\n${conclusion}`);
 };

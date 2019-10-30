@@ -1,6 +1,4 @@
 export default async function RestaurantsCreateTelegram(context) {
-  console.log("333")
-
   if (context.viewModel == undefined) {
     await context.sendText(`新增餐廳失敗。`);
     return;

@@ -6,7 +6,7 @@ const commonConfig = {
    password: "",
    database: "lol",
    synchronize: true,
-   logging: true
+   logging: false
  };
 
  const srcConfig = {
