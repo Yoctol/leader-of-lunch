@@ -34,7 +34,7 @@ jobs:
           root: .
           paths:
             - node_modules
-            - lib
+            - dist
   lint:
     <<: *docker_default
     steps:
