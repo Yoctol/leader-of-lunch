@@ -21,4 +21,4 @@ export default async function RestaurantsDeleteTelegram(context) {
     .join('\n');
 
   await context.sendText(desc);
-};
+}

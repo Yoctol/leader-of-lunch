@@ -5,4 +5,4 @@ export default async function LineAddText(context, { next }) {
   // context.text = context.text || '';
   // console.log(`set text: ${context.text}`);
   return next;
-};
+}

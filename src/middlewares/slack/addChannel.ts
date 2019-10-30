@@ -5,4 +5,4 @@ export default async function SlackAddChannel(context, { next }) {
 
   // context.channel = await context.models.Channel.findOrCreate({ key });
   return next;
-};
+}

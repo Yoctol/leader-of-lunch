@@ -1,11 +1,11 @@
-import {Entity, ManyToOne, OneToMany, Column } from "typeorm";
-import Base from './Base'
+import { Entity, ManyToOne, OneToMany, Column } from 'typeorm';
+import Base from './Base';
 import Restaurant from './Restaurant';
 import Election from './Election';
 import Vote from './Vote';
 
 @Entity()
-export default class Option extends Base{
+export default class Option extends Base {
   @Column()
   index: number;
 

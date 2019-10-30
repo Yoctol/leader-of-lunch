@@ -4,4 +4,4 @@ export default async function SlackAddUser(context, { next }) {
 
   // context.user = await context.models.User.findOrCreate({ key });
   return next;
-};
+}

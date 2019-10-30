@@ -1,5 +1,5 @@
 export default async function RestaurantsIndexLine(context) {
-  const restaurants = context.viewModel.restaurants.map((r)=>r.name);
+  const restaurants = context.viewModel.restaurants.map(r => r.name);
 
   const altText = `所有餐廳：\n${restaurants.join('\n')}`.substring(0, 100);
 
@@ -66,4 +66,4 @@ export default async function RestaurantsIndexLine(context) {
     },
   };
   await context.replyFlex(altText, flexContents);
-};
+}

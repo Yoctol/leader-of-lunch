@@ -1,26 +1,26 @@
-import { router, text } from 'bottender/router'
+import { router, text } from 'bottender/router';
 
-import debug from './debug'
-import menu from './menu'
+import debug from './debug';
+import menu from './menu';
 
-import userShow from './users/show'
-import userUpdate from './users/update'
-import userIndex from './users/index'
+import userShow from './users/show';
+import userUpdate from './users/update';
+import userIndex from './users/index';
 
-import restaurantCreate from './restaurants/create'
-import restaurantDelete from './restaurants/delete'
-import restaurantIndex from './restaurants/index'
+import restaurantCreate from './restaurants/create';
+import restaurantDelete from './restaurants/delete';
+import restaurantIndex from './restaurants/index';
 
-import electionCreate from './elections/create'
-import electionShow from './elections/show'
+import electionCreate from './elections/create';
+import electionShow from './elections/show';
 
-import voteCreate from './votes/create'
-import voteDelete from './votes/delete'
+import voteCreate from './votes/create';
+import voteDelete from './votes/delete';
 
-export default async function ActionsRouter(){
+export default async function ActionsRouter() {
   return router([
     {
-      predicate: (context) => context.text == 'follow' || context.text == 'join',
+      predicate: context => context.text == 'follow' || context.text == 'join',
       action: menu,
     },
     text(/menu|help|午餐隊長|教學|\/start|開始使用/, menu),
@@ -34,6 +34,6 @@ export default async function ActionsRouter(){
     text(/^我是?誰/, userShow),
     text(/^(叫我|我叫)(?<name>.+)/, userUpdate),
     text(['暱稱', 'users'], userIndex),
-    text("*", debug),
-  ])
+    text('*', debug),
+  ]);
 }

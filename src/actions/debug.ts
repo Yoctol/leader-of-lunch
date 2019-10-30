@@ -3,4 +3,4 @@ export default async function Debug(context) {
     return;
   }
   await context.sendText(JSON.stringify(context.event));
-};
+}

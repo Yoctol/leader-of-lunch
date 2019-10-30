@@ -12,9 +12,9 @@ export default async function RestaurantsCreateTelegram(context) {
 
   const desc = restaurants
     .map(restaurant => {
-      return `新增 ${restaurant.name} 成功`
+      return `新增 ${restaurant.name} 成功`;
     })
     .join('\n');
 
   await context.sendText(desc);
-};
+}

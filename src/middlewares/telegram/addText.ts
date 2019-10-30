@@ -4,8 +4,8 @@ export default async function TelegramAddText(context, { next }) {
   // // when join group
   const message = context.event.rawEvent.message;
 
-  if(message){
-    if(message.group_chat_created || message.new_chat_member){
+  if (message) {
+    if (message.group_chat_created || message.new_chat_member) {
       context.text = 'join';
     }
   }
@@ -15,4 +15,4 @@ export default async function TelegramAddText(context, { next }) {
   console.log(`set text: ${context.text}`);
 
   return next;
-};
+}

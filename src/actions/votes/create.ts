@@ -1,4 +1,3 @@
-// import Option from '../../entity/Option'
 import Vote from '../../entity/Vote'
 
 const getNumber = text => {

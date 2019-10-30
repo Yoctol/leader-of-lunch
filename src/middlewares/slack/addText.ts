@@ -15,4 +15,4 @@ export default async function SlackAddText(context, { next }) {
   // context.text = context.text || '';
   // console.log(`set text: ${context.text}`);
   return next;
-};
+}

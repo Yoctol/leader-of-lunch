@@ -1,11 +1,11 @@
-import {Entity, OneToMany, Column } from "typeorm";
-import Base from './Base'
+import { Entity, OneToMany, Column } from 'typeorm';
+import Base from './Base';
 import Vote from './Vote';
 import ChannelUser from './ChannelUser';
 
 @Entity()
-export default class User extends Base{
-  @Column({unique: true})
+export default class User extends Base {
+  @Column({ unique: true })
   key!: string;
 
   @Column({ nullable: true })
@@ -17,17 +17,17 @@ export default class User extends Base{
   @OneToMany(type => ChannelUser, channelUser => channelUser.user)
   channelUsers: Promise<ChannelUser[]>;
 
-  async lastVote(){
+  async lastVote() {
     const vote = await Vote.find({
       where: {
-        user: this
+        user: this,
       },
-      relations: ["option"],
+      relations: ['option'],
       order: {
-        id: "DESC"
+        id: 'DESC',
       },
-      take: 1
-    })
-    return vote[0]
+      take: 1,
+    });
+    return vote[0];
   }
 }

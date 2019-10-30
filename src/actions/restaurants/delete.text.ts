@@ -21,4 +21,4 @@ export default async function RestaurantsDeleteText(context) {
     .join('\n');
 
   await context.sendText(desc);
-};
+}

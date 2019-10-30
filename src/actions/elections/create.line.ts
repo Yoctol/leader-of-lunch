@@ -2,23 +2,20 @@ export default async function ElectionsCreateLine(context) {
   const restaurants = context.viewModel.restaurants;
 
   if (restaurants == null || restaurants.length == 0) {
-    await context.sendText(
-      `LINE 目前沒有任何餐廳，請先新增餐廳再建立票選活動。`,
-      {
-        quickReply: {
-          items: [
-            {
-              type: 'action',
-              action: {
-                type: 'message',
-                label: '新增漢堡王',
-                text: '新增漢堡王',
-              },
+    await context.sendText(`LINE 目前沒有任何餐廳，請先新增餐廳再建立票選活動。`, {
+      quickReply: {
+        items: [
+          {
+            type: 'action',
+            action: {
+              type: 'message',
+              label: '新增漢堡王',
+              text: '新增漢堡王',
             },
-          ],
-        },
-      }
-    );
+          },
+        ],
+      },
+    });
     return;
   }
 
@@ -72,4 +69,4 @@ export default async function ElectionsCreateLine(context) {
     },
   };
   await context.replyFlex(altText, flexContents);
-};
+}

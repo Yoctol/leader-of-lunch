@@ -1,5 +1,3 @@
-
-
 export default async function UsersShow(context) {
   const name = context.user.name;
   if (name) {
@@ -7,4 +5,4 @@ export default async function UsersShow(context) {
   } else {
     await context.sendText(`你誰～`);
   }
-};
+}

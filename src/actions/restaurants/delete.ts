@@ -1,22 +1,22 @@
-import render from '../render'
-import Restaurant from '../../entity/Restaurant'
-import ChannelRestaurant from '../../entity/ChannelRestaurant'
+import render from '../render';
+import Restaurant from '../../entity/Restaurant';
+import ChannelRestaurant from '../../entity/ChannelRestaurant';
 
 async function deleteRestaurant(channel, name) {
-  const restaurant = await Restaurant.findOne({ name })
-  if(restaurant == null){
+  const restaurant = await Restaurant.findOne({ name });
+  if (restaurant == null) {
     return {
       name,
-      success: false
-    }
+      success: false,
+    };
   }
 
-  const channelRestaurant = await ChannelRestaurant.findOne({ restaurant, channel })
-  if(channelRestaurant == null){
+  const channelRestaurant = await ChannelRestaurant.findOne({ restaurant, channel });
+  if (channelRestaurant == null) {
     return {
       name,
-      success: false
-    }
+      success: false,
+    };
   }
   try {
     await channelRestaurant.remove();
@@ -43,8 +43,8 @@ export default async function RestaurantsDelete(context, { match }) {
   const restaurants = await Promise.all(
     name.split(/[/\s]+/).map(async function(name) {
       return await deleteRestaurant(channel, name);
-    })
+    }),
   );
 
   return render('restaurants/delete', { restaurants });
-};
+}

@@ -6,9 +6,9 @@ export default async function ElectionsCreateText(context) {
     return;
   }
 
-  const optionsDesc = options.map((option) => {
+  const optionsDesc = options.map(option => {
     return `${option.index} ${option.restaurant.name}`;
   });
 
   await context.sendText(`想吃什麼\n${optionsDesc.join('\n')}`);
-};
+}

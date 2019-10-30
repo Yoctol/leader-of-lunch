@@ -16,8 +16,8 @@ export default async function ElectionsCreateTelegram(context) {
     return;
   }
 
-  console.log(options)
-  const optionsDesc = options.map((option) => {
+  console.log(options);
+  const optionsDesc = options.map(option => {
     return `${option.index} ${option.restaurant.name}`;
   });
 
@@ -32,4 +32,4 @@ export default async function ElectionsCreateTelegram(context) {
       }),
     },
   });
-};
+}

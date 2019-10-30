@@ -13,8 +13,8 @@ export default class Base extends BaseEntity {
     default: () => '0',
     transformer: {
       to: (value?: Date) => (!value ? value : Math.round(value.getTime() / 1000)),
-      from: (value?: number) => (!value ? value : new Date(value * 1000))
-    }
+      from: (value?: number) => (!value ? value : new Date(value * 1000)),
+    },
   })
   @Type(() => Date)
   createdAt: Date;
@@ -26,8 +26,8 @@ export default class Base extends BaseEntity {
     default: () => null,
     transformer: {
       to: (value?: Date) => (!value ? value : Math.round(value.getTime() / 1000)),
-      from: (value?: number) => (!value ? value : new Date(value * 1000))
-    }
+      from: (value?: number) => (!value ? value : new Date(value * 1000)),
+    },
   })
   @Type(() => Date)
   updatedAt?: Date;
@@ -42,18 +42,17 @@ export default class Base extends BaseEntity {
     this.updatedAt = new Date();
   }
 
-
   static async findOrCreateBy(params) {
-    let entity = await this.findOne(params)
-    if(entity != null){
-      return entity
+    let entity = await this.findOne(params);
+    if (entity != null) {
+      return entity;
     }
 
-    entity = new this()
-    Object.keys(params).forEach((key)=>{
-      entity[key] = params[key]
-    })
-    await entity.save()
-    return entity
+    entity = new this();
+    Object.keys(params).forEach(key => {
+      entity[key] = params[key];
+    });
+    await entity.save();
+    return entity;
   }
 }

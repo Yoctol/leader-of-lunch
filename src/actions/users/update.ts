@@ -3,4 +3,4 @@ export default async function UsersUpdate(context, { match }) {
   context.user.name = name;
   await context.user.save();
   await context.sendText(`好哦～好哦～`);
-};
+}

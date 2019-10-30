@@ -8,4 +8,4 @@ export default async function LineAddUser(context, { next }) {
   // console.log(`set user ${key}`);
   // context.user = await context.models.User.findOrCreate({ key });
   return next;
-};
+}

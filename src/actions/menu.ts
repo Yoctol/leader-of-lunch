@@ -14,4 +14,4 @@ export default async function Menu(context) {
   參與投票：「1」「2」「3」「4」「pass」
   顯示統計：「走|出發|統計」
 `);
-};
+}
