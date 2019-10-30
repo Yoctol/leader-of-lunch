@@ -1,0 +1,80 @@
+version: 2
+# Reference variables.
+references:
+  docker_default: &docker_default
+    working_directory: /tmp/app
+    docker:
+      - image: node:12
+    environment:
+      TZ: '/usr/share/zoneinfo/Asia/Taipei'
+
+jobs:
+  build:
+    <<: *docker_default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-12-cache-{{checksum "yarn.lock"}}
+            - node-12-cache
+      - run:
+          name: install dependencies
+          command: |
+            yarn config set cache-folder .yarn-cache
+            yarn --frozen-lockfile
+      - run:
+          name: build
+          command: npm run build
+      - save_cache:
+          key: node-12-cache-{{checksum "yarn.lock"}}
+          paths:
+            - .yarn-cache
+            - ./node_modules
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+            - lib
+  lint:
+    <<: *docker_default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: run lint
+          command: npm run lint -- --color
+  test:
+    <<: *docker_default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: run test
+          command: npm run testonly:cov -- --no-cache --colors
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: junit.xml
+workflows:
+  version: 2
+  all-in-one:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - lint:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /.*/
+      - test:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /.*/
