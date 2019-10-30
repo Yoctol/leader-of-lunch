@@ -1,5 +1,22 @@
 export default async function RestaurantsIndexLine(context) {
-  const restaurants = context.viewModel.restaurants.map(r => r.name);
+  const restaurants: string[] = context.viewModel.restaurants.map(r => r.name);
+  if(restaurants.length === 0){
+    await context.sendText(`目前沒有任何餐廳，請先新增餐廳。`, {
+      quickReply: {
+        items: [
+          {
+            type: 'action',
+            action: {
+              type: 'message',
+              label: '新增漢堡王',
+              text: '新增漢堡王',
+            },
+          },
+        ],
+      },
+    });
+    return;
+  }
 
   const altText = `所有餐廳：\n${restaurants.join('\n')}`.substring(0, 100);
 

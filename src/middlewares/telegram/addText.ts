@@ -1,7 +1,7 @@
 export default async function TelegramAddText(context, { next }) {
   context.text = context.event.text;
 
-  // // when join group
+  // when join group
   const message = context.event.rawEvent.message;
 
   if (message) {

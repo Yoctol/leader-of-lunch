@@ -1,8 +1,10 @@
-export default async function LineAddChannel(context, { next }) {
-  // const source = context.event.rawEvent.source;
-  // const key = source.groupId || source.roomId || source.userId;
-  // console.log(`set channel ${key}`);
+import Channel from '../../entity/Channel';
 
-  // context.channel = await context.models.Channel.findOrCreate({ key });
+export default async function LineAddChannel(context, { next }) {
+  const source = context.event.rawEvent.source;
+  const key = source.groupId || source.roomId || source.userId;
+  context.channel = await Channel.findOrCreateBy({ key })
+
+  console.log(`set channel ${key}`);
   return next;
 }
