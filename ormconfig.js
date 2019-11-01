@@ -1,10 +1,6 @@
 const commonConfig = {
    type: "postgres",
-   host: "localhost",
-   port: 5432,
-   username: "",
-   password: "",
-   database: "lol",
+   url: process.env.POSTGRESQL_URL,
    synchronize: true,
    logging: false
  };
