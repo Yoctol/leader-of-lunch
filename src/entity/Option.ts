@@ -6,7 +6,7 @@ import Vote from './Vote';
 
 @Entity()
 export default class Option extends Base {
-  @Column()
+  @Column({ nullable: false })
   index: number;
 
   @ManyToOne(type => Restaurant, restaurant => restaurant.options, { nullable: false, eager: true })

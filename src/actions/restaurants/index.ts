@@ -1,4 +1,4 @@
-import render from '../render';
+import render from '../../views/render';
 import ChannelRestaurant from '../../entity/ChannelRestaurant';
 
 export default async function RestaurantsIndex(context) {

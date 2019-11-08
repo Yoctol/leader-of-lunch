@@ -42,17 +42,25 @@ export default class Base extends BaseEntity {
     this.updatedAt = new Date();
   }
 
-  static async findOrCreateBy(params) {
-    let entity = await this.findOne(params);
-    if (entity != null) {
-      return entity;
-    }
-
-    entity = new this();
+  static async build(params) {
+    let entity = new this();
     Object.keys(params).forEach(key => {
       entity[key] = params[key];
     });
     await entity.save();
     return entity;
+  }
+
+  static async findOrCreateBy(params) {
+    let entity = await this.findOne(params);
+    if (entity != null) {
+      return entity;
+    }
+    return await this.build(params);
+  }
+
+  static async exists(params){
+    let entity = await this.findOne(params);
+    return entity != null;
   }
 }

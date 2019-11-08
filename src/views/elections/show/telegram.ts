@@ -1,5 +1,8 @@
+import { chunk, sortBy } from 'lodash';
+
 export default async function ElectionsCreateTelegram(context) {
-  const options = context.viewModel.options;
+  const election = context.viewModel.election;
+  const options = sortBy(election.options, o=>o.id);
 
   if (options == null || options.length == 0) {
     await context.sendText(`目前沒有任何餐廳，請先新增餐廳再建立票選活動。`, {
@@ -16,20 +19,25 @@ export default async function ElectionsCreateTelegram(context) {
     return;
   }
 
-  console.log(options);
   const optionsDesc = options.map(option => {
     return `${option.index} ${option.restaurant.name}`;
   });
 
-  await context.sendText(`想吃什麼\n${optionsDesc.join('\n')}`, {
+  const keyboardOptions = optionsDesc.map(desc => {
+    return {
+        text: desc,
+    }
+  })
+
+  keyboardOptions.push({
+    text: "吃別的"
+  })
+
+  const keyboard = chunk(keyboardOptions, Math.floor(Math.sqrt(keyboardOptions.length)))
+
+
+  await context.sendText(`第 ${election.index} 次午餐會議：\n${optionsDesc.join('\n')}`, {
     replyMarkup: {
-      keyboard: optionsDesc.map(desc => {
-        return [
-          {
-            text: desc,
-          },
-        ];
-      }),
-    },
+      keyboard
   });
 }

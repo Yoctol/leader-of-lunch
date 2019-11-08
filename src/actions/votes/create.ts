@@ -1,19 +1,23 @@
 import Vote from '../../entity/Vote'
 
 const getNumber = text => {
-  if (text.startsWith('1') || text.startsWith('one')) {
+  if (text.startsWith('one')) {
     return 1;
   }
-  if (text.startsWith('2') || text.startsWith('two')) {
+  if (text.startsWith('two')) {
     return 2;
   }
-  if (text.startsWith('3') || text.startsWith('three')) {
+  if (text.startsWith('three')) {
     return 3;
   }
-  if (text.startsWith('4') || text.startsWith('four')) {
+  if (text.startsWith('four')) {
     return 4;
   }
-  return 0;
+  const n = Number.parseInt(text);
+  if(isNaN(n)){
+    return 0;
+  }
+  return n;
 };
 
 export default async function VotesCreate(context) {

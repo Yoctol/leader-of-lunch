@@ -12,7 +12,10 @@ import restaurantDelete from './restaurants/delete';
 import restaurantIndex from './restaurants/index';
 
 import electionCreate from './elections/create';
-import electionShow from './elections/show';
+import electionResult from './elections/result';
+
+import optionCreate from './options/create';
+import optionsCreateRandom from './options/createRandom';
 
 import voteCreate from './votes/create';
 import voteDelete from './votes/delete';
@@ -28,9 +31,11 @@ export default async function ActionsRouter() {
     text(/^新增(?<name>[\s\S]+)/, restaurantCreate),
     text(/^刪除(?<name>[\s\S]+)/, restaurantDelete),
     text(/^不吃|pass/, voteDelete),
-    text(/^(餓|想?吃|午餐)/, electionCreate),
-    text(/^走|出發|統計/, electionShow),
-    text(/^(1|2|3|4|one|two|three|four).*$/, voteCreate),
+    text(/吃別的/, optionsCreateRandom),
+    text(/^想吃\s*(?<name>.+)/, optionCreate),
+    text(/^(餓|吃|午餐)/, electionCreate),
+    text(/^走|出發|統計/, electionResult),
+    text(/^(\d+|one|two|three|four).*$/, voteCreate),
     text(/^我是?誰/, userShow),
     text(/^(叫我|我叫)(?<name>.+)/, userUpdate),
     text(['暱稱', 'users'], userIndex),
