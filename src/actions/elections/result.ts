@@ -7,8 +7,8 @@ export default async function ElectionsResult(context) {
     return render(context);
   }
 
-  const options = await election.options.sort(function(a, b) {
+  election.options = await election.options.sort(function(a, b) {
     return a.votes.length < b.votes.length ? 1 : -1;
   });
-  return render('elections/result', { options });
+  return render('elections/result', { election });
 }

@@ -1,3 +1,62 @@
+import { chunk, sortBy } from 'lodash';
+
+const column_number = 2
+
+function restaurant_view(restaurant){
+  console.log(restaurant)
+  return {
+    type: 'box',
+    layout: 'horizontal',
+    flex: 1,
+    contents: [
+      {
+        type: 'text',
+        text: restaurant,
+        color: '#666666',
+        size: 'sm',
+        gravity: 'center',
+        wrap: true,
+      },
+      {
+        type: 'text',
+        text: '❌',
+        size: 'sm',
+        action: {
+          type: 'message',
+          label: `刪除${restaurant}`,
+          text: `刪除${restaurant}`,
+        },
+        flex: 0,
+        align: 'end',
+      },
+    ],
+    margin: 'md',
+  }
+}
+
+function restaurant_row(restaurants){
+  const contents = restaurants.map((restaurant)=> restaurant_view(restaurant))
+  for(let i = contents.length ; i < column_number ; i ++){
+    contents.push(
+      {
+        type: 'filler',
+        flex: 1,
+      }
+    )
+  }
+  return {
+    type: 'box',
+    layout: 'horizontal',
+    contents,
+    margin: 'md',
+  }
+}
+
+function restaurant_list(restaurants){
+  const columns = chunk(restaurants, column_number)
+  return columns.map((column)=> restaurant_row(column))
+}
+
 export default async function RestaurantsIndexLine(context) {
   const restaurants: string[] = context.viewModel.restaurants.map(r => r.name);
   if(restaurants.length === 0){
@@ -8,8 +67,8 @@ export default async function RestaurantsIndexLine(context) {
             type: 'action',
             action: {
               type: 'message',
-              label: '新增漢堡王',
-              text: '新增漢堡王',
+              label: '餐廳功能說明',
+              text: '餐廳功能說明',
             },
           },
         ],
@@ -20,61 +79,23 @@ export default async function RestaurantsIndexLine(context) {
 
   const altText = `所有餐廳：\n${restaurants.join('\n')}`.substring(0, 100);
 
-  const bubbleContents = [];
-
-  restaurants.forEach((restaurant, index) => {
-    if (index > 0) {
-      bubbleContents.push({
-        type: 'separator',
-        margin: 'md',
-        color: '#e0e0e0',
-      });
-    }
-    bubbleContents.push({
-      type: 'box',
-      layout: 'horizontal',
-      contents: [
-        {
-          type: 'text',
-          text: restaurant,
-          color: '#666666',
-          size: 'lg',
-          gravity: 'center',
-          wrap: true,
-        },
-        {
-          type: 'text',
-          text: '❌',
-          action: {
-            type: 'message',
-            label: `刪除${restaurant}`,
-            text: `刪除${restaurant}`,
-          },
-          flex: 0,
-          align: 'end',
-        },
-      ],
-      margin: 'md',
-    });
-  });
+  let bubbleContents:any = [
+    {
+      "type": "text",
+      "text": '所有餐廳',
+      "size": "xl",
+      "weight": "bold"
+    },
+    {
+      "type": "separator",
+      "margin": "md",
+      "color": "#000000"
+    },
+    ...restaurant_list(restaurants)
+  ]
 
   const flexContents = {
     type: 'bubble',
-    header: {
-      type: 'box',
-      layout: 'vertical',
-      contents: [
-        {
-          type: 'text',
-          text: '所有餐廳',
-          size: 'md',
-          weight: 'bold',
-          color: '#333333',
-        },
-      ],
-      backgroundColor: '#d0e0f0',
-      paddingBottom: '12px',
-    },
     body: {
       type: 'box',
       layout: 'vertical',
@@ -82,5 +103,6 @@ export default async function RestaurantsIndexLine(context) {
       paddingAll: '10px',
     },
   };
+
   await context.replyFlex(altText, flexContents);
 }

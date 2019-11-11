@@ -1,7 +1,8 @@
 import { router, text } from 'bottender/router';
 
 import debug from './debug';
-import menu from './menu';
+import index from './home/index';
+import readme from './home/readme';
 
 import userShow from './users/show';
 import userUpdate from './users/update';
@@ -24,9 +25,11 @@ export default async function ActionsRouter() {
   return router([
     {
       predicate: context => context.text == 'follow' || context.text == 'join',
-      action: menu,
+      action: index,
     },
-    text(/menu|help|午餐隊長|教學|\/start|開始使用/, menu),
+    text(/\/start|開始使用|LOL|LoL|lol|午餐隊長/, index),
+    text(/menu|help|教學|[?]|？/, readme),
+    text(/^(?<section>.+)說明$/, readme),
     text(/^餐廳/, restaurantIndex),
     text(/^新增(?<name>[\s\S]+)/, restaurantCreate),
     text(/^刪除(?<name>[\s\S]+)/, restaurantDelete),

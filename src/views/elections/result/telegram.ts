@@ -1,5 +1,6 @@
-export default async function ElectionsShowTelegram(context) {
-  const options = context.viewModel.options;
+export default async function ElectionsResultTelegram(context) {
+  const election = context.viewModel.election;
+  const options = election.options;
 
   if (options == null) {
     await context.sendText('你還沒吃過午餐，請先吃一波午餐再查看午餐票選結果');
