@@ -25,7 +25,6 @@ async function deleteRestaurant(channel, name) {
       success: true,
     };
   } catch (error) {
-    console.log(error);
     return {
       name,
       success: false,

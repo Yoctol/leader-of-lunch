@@ -43,7 +43,7 @@ export default class Base extends BaseEntity {
   }
 
   static async build(params) {
-    let entity = new this();
+    const entity = new this();
     Object.keys(params).forEach(key => {
       entity[key] = params[key];
     });
@@ -52,7 +52,7 @@ export default class Base extends BaseEntity {
   }
 
   static async findOrCreateBy(params) {
-    let entity = await this.findOne(params);
+    const entity = await this.findOne(params);
     if (entity != null) {
       return entity;
     }
@@ -60,7 +60,7 @@ export default class Base extends BaseEntity {
   }
 
   static async exists(params){
-    let entity = await this.findOne(params);
+    const entity = await this.findOne(params);
     return entity != null;
   }
 }

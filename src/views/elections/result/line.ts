@@ -1,19 +1,20 @@
 
 
 export default async function ElectionsResultLine(context) {
-  let election = context.viewModel.election;
+  const election = context.viewModel.election;
   if (election == null) {
     await context.sendText('你還沒吃過午餐，請先吃一波午餐再查看午餐票選結果');
     return;
   }
 
   let options = election.options;
-  if (options == null) {
-    await context.sendText('你還沒吃過午餐，請先吃一波午餐再查看午餐票選結果');
+  options = options.filter((o)=>o.votes.length > 0)
+
+  if (options == null || options.length == 0) {
+    await context.sendText(`第 ${election.index} 次午餐結論：目前還沒有任何人投票。`);
     return;
   }
 
-  options = options.filter((o)=>o.votes.length > 0)
   const title =`第 ${election.index} 次午餐結論：吃${options[0].restaurant.name}`
 
   const contents = options.map(o => {
@@ -27,7 +28,7 @@ export default async function ElectionsResultLine(context) {
     }
   })
 
-  let bubbleContents:any = [
+  const bubbleContents:any = [
     {
       "type": "text",
       "text": title,

@@ -14,9 +14,9 @@ function optionView(option){
   }
 }
 
-function optionRow(options, chunk_number){
+function optionRow(options, chunkNumber){
   const contents = options.map(option=>optionView(option))
-  for(let i = contents.length ; i < chunk_number ; i++){
+  for(let i = contents.length ; i < chunkNumber ; i++){
     contents.push({
       type: 'filler'
     })
@@ -65,7 +65,7 @@ export default async function ElectionsCreateLine(context) {
   const title =`第 ${election.index} 次午餐會議`
   const text = `${title}: ${optionsDesc.join(', ')}`.substring(0, 100);
 
-  let bubbleContents:any = [
+  const bubbleContents:any = [
     {
       "type": "text",
       "text": title,

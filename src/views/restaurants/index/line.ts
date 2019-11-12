@@ -1,9 +1,8 @@
 import { chunk, sortBy } from 'lodash';
 
-const column_number = 2
+const columnNumber = 2
 
-function restaurant_view(restaurant){
-  console.log(restaurant)
+function restaurantView(restaurant){
   return {
     type: 'box',
     layout: 'horizontal',
@@ -34,9 +33,9 @@ function restaurant_view(restaurant){
   }
 }
 
-function restaurant_row(restaurants){
-  const contents = restaurants.map((restaurant)=> restaurant_view(restaurant))
-  for(let i = contents.length ; i < column_number ; i ++){
+function restaurantRow(restaurants){
+  const contents = restaurants.map((restaurant)=> restaurantView(restaurant))
+  for(let i = contents.length ; i < columnNumber ; i ++){
     contents.push(
       {
         type: 'filler',
@@ -52,9 +51,9 @@ function restaurant_row(restaurants){
   }
 }
 
-function restaurant_list(restaurants){
-  const columns = chunk(restaurants, column_number)
-  return columns.map((column)=> restaurant_row(column))
+function restaurantList(restaurants){
+  const columns = chunk(restaurants, columnNumber)
+  return columns.map((column)=> restaurantRow(column))
 }
 
 export default async function RestaurantsIndexLine(context) {
@@ -79,7 +78,7 @@ export default async function RestaurantsIndexLine(context) {
 
   const altText = `所有餐廳：\n${restaurants.join('\n')}`.substring(0, 100);
 
-  let bubbleContents:any = [
+  const bubbleContents:any = [
     {
       "type": "text",
       "text": '所有餐廳',
@@ -91,7 +90,7 @@ export default async function RestaurantsIndexLine(context) {
       "margin": "md",
       "color": "#000000"
     },
-    ...restaurant_list(restaurants)
+    ...restaurantList(restaurants)
   ]
 
   const flexContents = {

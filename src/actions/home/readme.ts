@@ -1,8 +1,8 @@
 import render from '../../views/render';
 export default async function Readme(context, { match }) {
-  const section = match.groups.section.trim();
+  const querySection = match.groups?.section?.trim();
 
-  let documents = [
+  const documents = [
     {
       section: '用戶功能',
       topics: [
@@ -69,7 +69,7 @@ export default async function Readme(context, { match }) {
     }
   ]
 
-  const filteredDocuments = documents.filter((doc)=> doc.section.indexOf(section) >= 0)
+  const filteredDocuments = documents.filter((doc)=> doc.section.indexOf(querySection) >= 0)
   if(filteredDocuments.length > 0){
     return render('home/readme', { documents: filteredDocuments });
   }

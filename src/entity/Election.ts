@@ -27,7 +27,7 @@ export default class Election extends Base {
       return null;
     }
 
-    let option = await Option.build({
+    const option = await Option.build({
       restaurant,
       election: this,
       index: this.options.length + 1
@@ -42,7 +42,7 @@ export default class Election extends Base {
     const availableRestaurants = restaurants.filter(restaurant => optionRestaurantNames.includes(restaurant.name) === false)
     const selectedRestaurants = sampleSize(availableRestaurants, number)
 
-    for(let restaurant of selectedRestaurants){
+    for(const restaurant of selectedRestaurants){
       await this.addOption(restaurant)
     }
   }

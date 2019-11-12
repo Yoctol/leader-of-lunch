@@ -36,6 +36,17 @@ export default async function IndexLine(context) {
           "style": "primary",
           "color": "#225588",
           "margin": "lg"
+        },
+        {
+          "type": "button",
+          "action": {
+            "type": "uri",
+            "label": "意見回饋",
+            "uri": "https://forms.gle/6c6qizGP1VGT9K8G6"
+          },
+          "style": "primary",
+          "color": "#225588",
+          "margin": "lg"
         }
       ]
     }
