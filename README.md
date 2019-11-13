@@ -1,9 +1,12 @@
 This project was bootstrapped with
 [Bottender](https://github.com/Yoctol/bottender) init script.
 
-
 # Introduction
 Leader of lunch is a LINE Bot helping people to make decisions on daily lunch in company.
+
+Scan the following QRCode to add Leader of lunch as your friend.
+
+![](images/qrcode.png)
 
 # Screenshots
 
@@ -13,7 +16,6 @@ Leader of lunch is a LINE Bot helping people to make decisions on daily lunch in
 ![](images/meeting.png)
 ![](images/vote.png)
 ![](images/result.png)
-![](images/qrcode.png)
 
 # Sending Feedback
 
