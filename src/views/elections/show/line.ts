@@ -1,4 +1,5 @@
 import { chunk, sortBy } from 'lodash';
+import textQuickReply from '../../shared/textQuickReply'
 
 function optionView(option){
   return {
@@ -42,20 +43,10 @@ export default async function ElectionsCreateLine(context) {
 
 
   if (options == null || options.length == 0) {
-    await context.sendText(`目前沒有任何餐廳，請先新增餐廳再建立票選活動。`, {
-      quickReply: {
-        items: [
-          {
-            type: 'action',
-            action: {
-              type: 'message',
-              label: '新增漢堡王',
-              text: '新增漢堡王',
-            },
-          },
-        ],
-      },
-    });
+    await context.sendText(
+      `目前沒有任何餐廳，請先新增餐廳再發起午餐會議。`,
+      textQuickReply('餐廳說明')
+    );
     return;
   }
 
@@ -90,9 +81,7 @@ export default async function ElectionsCreateLine(context) {
     }
   }
 
-  const quickReply = {
+  const quickReply =  textQuickReply("")
 
-  }
-
-  await context.sendFlex(text, bubble);
+  await context.sendFlex(text, bubble, textQuickReply("會議說明"));
 }

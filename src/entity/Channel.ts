@@ -52,20 +52,16 @@ export default class Channel extends Base {
       take: 1,
     });
 
-    if(elections === null){
+    if(elections == null || elections.length == 0){
       return null;
     }
 
     const election = elections[0];
-    if(election === null){
-      return null;
-    }
-
     election.index = await this.electionCount()
     return election;
   }
 
-  async lastOrCreateElection(minutes = 60 * 6){
+  async lastOrCreateElection(minutes = 60){
     const lastElection = await this.lastElection()
     if(lastElection != null){
       if(lastElection.createdAt.getTime() > new Date().getTime() - minutes * 1000 * 60){

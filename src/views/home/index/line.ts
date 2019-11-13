@@ -1,3 +1,5 @@
+import textQuickReply from '../../shared/textQuickReply'
+
 export default async function IndexLine(context) {
   const text = '我是午餐隊長，不知道午餐要吃什麼的時候，就呼喚我的名字吧！'
 
@@ -52,33 +54,11 @@ export default async function IndexLine(context) {
     }
   }
 
-  let quickReply =  {
-    "items": [
-      {
-        "type": "action",
-        "action": {
-          "type": "message",
-          "label": "餐廳說明",
-          "text": "餐廳說明"
-        }
-      }
-    ]
-  }
+  let quickReply =  textQuickReply('餐廳說明')
 
   if(context.channel.restaurants.length >= 4){
-    quickReply =  {
-      "items": [
-        {
-          "type": "action",
-          "action": {
-            "type": "message",
-            "label": "發起投票",
-            "text": "餓了"
-          }
-        }
-      ]
-    }
+    quickReply = textQuickReply('吃午餐了')
   }
 
-  await context.sendFlex(text, bubble, { quickReply });
+  await context.sendFlex(text, bubble, quickReply);
 }

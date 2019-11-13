@@ -1,13 +1,19 @@
 export default async function ElectionsResultTelegram(context) {
   const election = context.viewModel.election;
-  const options = election.options;
+  if (election == null) {
+    await context.sendText('目前沒有午餐會議，請說「餓了」來發起午餐會議。');
+    return;
+  }
 
-  if (options == null) {
-    await context.sendText('你還沒吃過午餐，請先吃一波午餐再查看午餐票選結果');
+  let options = election.options;
+  options = options.filter((o)=>o.votes.length > 0)
+
+  if (options == null || options.length == 0) {
+    await context.sendText(`第 ${election.index} 次午餐結論：目前還沒有任何人投票。`);
     return;
   }
 
   const result = options.map(o => `${o.restaurant.name}: ${o.votes.length}`).join('\n');
   const conclusion = `結論：吃${options[0].restaurant.name}`;
-  await context.sendText(`本日午餐票選結果：\n${result}\n\n${conclusion}`);
+  await context.sendText(`本日午餐會議結果：\n${result}\n\n${conclusion}`);
 }

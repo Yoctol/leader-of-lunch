@@ -5,7 +5,7 @@ export default async function ElectionsCreateTelegram(context) {
   const options = sortBy(election.options, o=>o.id);
 
   if (options == null || options.length == 0) {
-    await context.sendText(`目前沒有任何餐廳，請先新增餐廳再建立票選活動。`, {
+    await context.sendText(`目前沒有任何餐廳，請先新增餐廳再發起午餐會議。`, {
       replyMarkup: {
         keyboard: [
           [

@@ -4,7 +4,7 @@ export default async function ElectionsResult(context) {
   const election = await context.channel.lastElection();
 
   if (election === null) {
-    return render(context);
+    return render('elections/result');
   }
 
   election.options = await election.options.sort(function(a, b) {

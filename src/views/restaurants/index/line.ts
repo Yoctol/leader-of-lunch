@@ -1,4 +1,5 @@
 import { chunk, sortBy } from 'lodash';
+import textQuickReply from '../../shared/textQuickReply'
 
 const columnNumber = 2
 
@@ -59,20 +60,10 @@ function restaurantList(restaurants){
 export default async function RestaurantsIndexLine(context) {
   const restaurants: string[] = context.viewModel.restaurants.map(r => r.name);
   if(restaurants.length === 0){
-    await context.sendText(`目前沒有任何餐廳，請先新增餐廳。`, {
-      quickReply: {
-        items: [
-          {
-            type: 'action',
-            action: {
-              type: 'message',
-              label: '餐廳功能說明',
-              text: '餐廳功能說明',
-            },
-          },
-        ],
-      },
-    });
+    await context.sendText(
+      `目前沒有任何餐廳，請先新增餐廳。`,
+      textQuickReply('餐廳說明')
+    );
     return;
   }
 
