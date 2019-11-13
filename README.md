@@ -3,7 +3,7 @@ This project was bootstrapped with
 
 
 # Introduction
-Leader of lunch is a LINE Bot helping people to make decisions on daily lunch with college.
+Leader of lunch is a LINE Bot helping people to make decisions on daily lunch in company.
 
 # Screenshots
 
