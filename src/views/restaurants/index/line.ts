@@ -6,8 +6,8 @@ const columnNumber = 2
 function restaurantView(restaurant){
   return {
     type: 'box',
+
     layout: 'horizontal',
-    flex: 1,
     contents: [
       {
         type: 'text',
@@ -17,18 +17,17 @@ function restaurantView(restaurant){
         gravity: 'center',
         wrap: true,
       },
-      {
-        type: 'text',
-        text: '❌',
-        size: 'sm',
-        action: {
-          type: 'message',
-          label: `刪除${restaurant}`,
-          text: `刪除${restaurant}`,
-        },
-        flex: 0,
-        align: 'end',
-      },
+      // {
+      //   type: 'text',
+      //   text: '❌',
+      //   size: 'sm',
+      //   action: {
+      //     type: 'message',
+      //     text: `刪除${restaurant}`,
+      //   },
+      //   flex: 0,
+      //   align: 'end',
+      // },
     ],
     margin: 'md',
   }
@@ -39,8 +38,7 @@ function restaurantRow(restaurants){
   for(let i = contents.length ; i < columnNumber ; i ++){
     contents.push(
       {
-        type: 'filler',
-        flex: 1,
+        type: 'filler'
       }
     )
   }
@@ -58,7 +56,7 @@ function restaurantList(restaurants){
 }
 
 export default async function RestaurantsIndexLine(context) {
-  const restaurants: string[] = context.viewModel.restaurants.map(r => r.name);
+  const restaurants: string[] = context.viewModel.restaurants.map(r => r.name.substring(0, 20));
   if(restaurants.length === 0){
     await context.sendText(
       `目前沒有任何餐廳，請先新增餐廳。`,

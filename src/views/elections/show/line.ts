@@ -51,7 +51,7 @@ export default async function ElectionsCreateLine(context) {
   }
 
   const optionsDesc = options.map((option) => {
-    return `${option.index} ${option.restaurant.name}`;
+    return `${option.index} ${option.restaurant.name.substring(0, 20)}`;
   });
   const title =`第 ${election.index} 次午餐會議`
   const text = `${title}: ${optionsDesc.join(', ')}`.substring(0, 100);

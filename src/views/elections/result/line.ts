@@ -21,12 +21,12 @@ export default async function ElectionsResultLine(context) {
     return;
   }
 
-  const title =`第 ${election.index} 次午餐結論：吃${options[0].restaurant.name}`
+  const title =`第 ${election.index} 次午餐結論：吃${options[0].restaurant.name.substring(0, 20)}`
 
   const contents = options.map(o => {
     return {
       "type": "text",
-      "text": `${o.restaurant.name}: ${o.votes.length}`,
+      "text": `${o.restaurant.name.substring(0, 20)}: ${o.votes.length}`,
       "size": "sm",
       "color": "#666666",
       "wrap": true,

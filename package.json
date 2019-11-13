@@ -11,6 +11,7 @@
     "testonly:cov": "jest --coverage --runInBand"
   },
   "dependencies": {
+    "@sentry/node": "5.8.0",
     "@types/node": "^12.11.7",
     "bottender": "1.0.0-alpha.22",
     "class-transformer": "^0.2.3",
