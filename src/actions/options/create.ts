@@ -7,7 +7,7 @@ export default async function OptionsCreate(context, { match }) {
   const restaurant = await context.channel.addRestaurantByName(name);
   const votedOption = await election.addOption(restaurant);
   const result = await context.user.voteTo(election, votedOption)
-  const userName = context.user.name.substring(0, 20) || '那個誰';
+  const userName = context.user.name?.substring(0, 20) || '那個誰';
   if (result.isUpdate) {
     await context.sendText(`${userName}說他改吃${votedOption.restaurant.name.substring(0, 20)}`);
   } else {

@@ -1,5 +1,5 @@
 export default async function VotesDelete(context) {
-  const userName = context.user.name || '那個誰';
+  const userName = context.user.name?.substring(0, 20) || '那個誰';
 
   const election = await context.channel.lastElection();
   const lastVote = await context.user.lastVote();

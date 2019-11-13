@@ -11,23 +11,23 @@ function restaurantView(restaurant){
     contents: [
       {
         type: 'text',
-        text: restaurant,
+        text: restaurant.substring(0, 20),
         color: '#666666',
         size: 'sm',
         gravity: 'center',
         wrap: true,
       },
-      // {
-      //   type: 'text',
-      //   text: '❌',
-      //   size: 'sm',
-      //   action: {
-      //     type: 'message',
-      //     text: `刪除${restaurant}`,
-      //   },
-      //   flex: 0,
-      //   align: 'end',
-      // },
+      {
+        type: 'text',
+        text: '❌',
+        size: 'sm',
+        action: {
+          type: 'message',
+          text: `刪除${restaurant}`,
+        },
+        flex: 0,
+        align: 'end',
+      },
     ],
     margin: 'md',
   }
@@ -56,7 +56,7 @@ function restaurantList(restaurants){
 }
 
 export default async function RestaurantsIndexLine(context) {
-  const restaurants: string[] = context.viewModel.restaurants.map(r => r.name.substring(0, 20));
+  const restaurants: string[] = context.viewModel.restaurants.map(r => r.name);
   if(restaurants.length === 0){
     await context.sendText(
       `目前沒有任何餐廳，請先新增餐廳。`,
@@ -82,7 +82,7 @@ export default async function RestaurantsIndexLine(context) {
     ...restaurantList(restaurants)
   ]
 
-  const flexContents = {
+  const bubble = {
     type: 'bubble',
     body: {
       type: 'box',
@@ -92,5 +92,12 @@ export default async function RestaurantsIndexLine(context) {
     },
   };
 
-  await context.replyFlex(altText, flexContents);
+  const carousel = {
+    type: 'carousel',
+    contents: [
+      bubble
+    ]
+  }
+
+  await context.replyFlex(altText, carousel);
 }
