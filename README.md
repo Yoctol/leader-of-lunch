@@ -1,14 +1,38 @@
 This project was bootstrapped with
 [Bottender](https://github.com/Yoctol/bottender) init script.
 
+
+# Introduction
+Leader of lunch is a LINE Bot helping people to make decisions on daily lunch with college.
+
+![](images/greeting.png)
+![](images/meeting.png)
+![](images/restaurants.png)
+![](images/readme.png)
+![](images/qrcode.png)
+
 ## Sending Feedback
 
 Always feel free to open issue to
 [Bottender](https://github.com/Yoctol/bottender/issues).
 
-## Folder Structure
+## Setup
 
-After creation, your project should look like this:
+After cloned this repository. in order to setup you need to follow the steps:
+
+to install the dependencies:
+
+```
+yarn install
+```
+
+to build typescript:
+
+```
+tsc
+```
+
+to create da
 
 ```
 my-bot/
