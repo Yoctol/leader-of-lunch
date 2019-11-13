@@ -20,7 +20,7 @@ Scan the following QRCode to add Leader of lunch as your friend.
 # Sending Feedback
 
 Always feel free to open issue to
-[Leader of Lunth](https://github.com/Yoctol/leader-of-lunch/issues).
+[Leader of Lunch](https://github.com/Yoctol/leader-of-lunch/issues).
 
 # Setup Steps
 
