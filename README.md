@@ -11,20 +11,22 @@ Leader of lunch is a LINE Bot helping people to make decisions on daily lunch wi
 ![](images/readme.png)
 ![](images/qrcode.png)
 
-## Sending Feedback
+# Sending Feedback
 
 Always feel free to open issue to
 [Bottender](https://github.com/Yoctol/bottender/issues).
 
+# Setup Steps
+
 To set up the development enviornment. You need to follow the steps:
 
-## clone the repository
+### clone the repository
 
 ```
 git clone https://github.com/Yoctol/leader-of-lunch.git
 ```
 
-## install dependencies
+### install dependencies
 
 Open a console at the project root path and type the following script to install dependencies:
 
@@ -32,20 +34,20 @@ Open a console at the project root path and type the following script to install
 yarn install
 ```
 
-## install PostgreSQL
+### install PostgreSQL
 In this project, I choose postgreSQL as the database.
 
 ```
 brew install postgresql
 ```
 
-## run PostgreSQL server
+### run PostgreSQL server
 
 ```
 brew services start postgresql
 ```
 
-## build typescript
+### build typescript
 
 Open a new console and typing the following script to auto compile when code changed.
 
@@ -53,7 +55,7 @@ Open a new console and typing the following script to auto compile when code cha
 tsc -w
 ```
 
-## setup .env file
+### setup .env file
 
 ```
 LINE_ACCESS_TOKEN={ put your line access token here }
@@ -65,7 +67,7 @@ NODE_ENV=development
 POSTGRESQL_URL=postgresql://:localhost:5432/lol
 ```
 
-## start the bot server
+### start the bot server
 
 Open a new console and typing the following script to run a bot server:
 
@@ -73,7 +75,7 @@ Open a new console and typing the following script to run a bot server:
 npx bottender dev
 ```
 
-## set webhook
+### set webhook
 
 After the bot server started, the webhook url will show on the console.
 If you are using Telegram bot, you could set the webhook by the following script:
