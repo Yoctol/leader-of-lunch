@@ -5,10 +5,12 @@ This project was bootstrapped with
 # Introduction
 Leader of lunch is a LINE Bot helping people to make decisions on daily lunch with college.
 
+# Screenshots
+
 ![](images/greeting.png)
-![](images/meeting.png)
-![](images/restaurants.png)
 ![](images/readme.png)
+![](images/restaurants.png)
+![](images/meeting.png)
 ![](images/qrcode.png)
 
 # Sending Feedback
