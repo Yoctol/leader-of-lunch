@@ -22,6 +22,9 @@ export default class Channel extends Base {
   channelRestaurants: ChannelRestaurant[];
 
   get restaurants(){
+    if(this.channelRestaurants === null){
+      return [];
+    }
     return this.channelRestaurants.map(cr => cr.restaurant)
   }
 
