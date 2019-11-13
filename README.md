@@ -11,6 +11,8 @@ Leader of lunch is a LINE Bot helping people to make decisions on daily lunch in
 ![](images/readme.png)
 ![](images/restaurants.png)
 ![](images/meeting.png)
+![](images/vote.png)
+![](images/result.png)
 ![](images/qrcode.png)
 
 # Sending Feedback
