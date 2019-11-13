@@ -30,4 +30,25 @@ export default class User extends Base {
     });
     return vote[0];
   }
+
+  async voteTo(election, votedOption) {
+    const lastVote = await this.lastVote();
+    if (election.options.map((o)=>{return o.id }).includes(lastVote?.option?.id)) {
+      // update vote
+      lastVote.option = votedOption
+      await lastVote.save()
+      return {
+        isUpdate: true,
+      }
+    } else {
+      // create vote
+      const vote = new Vote()
+      vote.user = this
+      vote.option = votedOption
+      await vote.save()
+      return {
+        isUpdate: false,
+      }
+    }
+  }
 }

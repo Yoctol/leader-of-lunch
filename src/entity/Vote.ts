@@ -9,5 +9,5 @@ export default class Vote extends Base {
   option: Option;
 
   @ManyToOne(type => User, user => user.votes, { nullable: false })
-  user!: Promise<User>;
+  user!: User;
 }

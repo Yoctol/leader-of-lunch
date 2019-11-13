@@ -27,21 +27,12 @@ export default async function VotesCreate(context) {
   }
 
   const election = await context.channel.lastElection();
-  const pickedOption = election.options.filter(option => option.index === n)[0]
-  const lastVote = await context.user.lastVote();
+  const votedOption = election.options.filter(option => option.index === n)[0]
+  const result = await context.user.voteTo(election, votedOption)
   const userName = context.user.name || '那個誰';
-
-  if (election.options.map((o)=>{return o.id }).includes(lastVote?.option?.id)) {
-      // update vote
-    lastVote.option = pickedOption
-    await lastVote.save()
-    await context.sendText(`${userName}說他改吃${pickedOption.restaurant.name}`);
+  if (result.isUpdate) {
+    await context.sendText(`${userName}說他改吃${votedOption.restaurant.name}`);
   } else {
-    // create vote
-    const vote = new Vote()
-    vote.user = context.user
-    vote.option = pickedOption
-    await vote.save()
-    await context.sendText(`${userName}說他想吃${pickedOption.restaurant.name}`);
+    await context.sendText(`${userName}說他想吃${votedOption.restaurant.name}`);
   }
 };

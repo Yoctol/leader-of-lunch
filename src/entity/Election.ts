@@ -18,13 +18,13 @@ export default class Election extends Base {
   options: Option[];
 
   async addOption(restaurant){
-    const isExists = await Option.exists({
+    const foundOption = await Option.findOne({
       restaurant,
       election: this
     })
 
-    if(isExists){
-      return null;
+    if(foundOption != null){
+      return foundOption;
     }
 
     const option = await Option.build({
