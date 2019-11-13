@@ -17,7 +17,7 @@ export default {
       },
       {
         "type": "text",
-        "text": "覺得做得不錯的話請幫我按 Github 星星",
+        "text": "覺得做得不錯的話請幫我按 GitHub 星星",
         "size": "sm",
         "color": "#666666",
         "wrap": true,
