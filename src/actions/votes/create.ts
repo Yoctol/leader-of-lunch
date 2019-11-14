@@ -27,7 +27,17 @@ export default async function VotesCreate(context) {
   }
 
   const election = await context.channel.lastElection();
+  // when not exists any active election.
+  if(election == null){
+    return;
+  }
+
   const votedOption = election.options.filter(option => option.index === n)[0]
+  // when user type a number not in the options.
+  if(votedOption == null){
+    return;
+  }
+
   const result = await context.user.voteTo(election, votedOption)
   const userName = context.user.name?.substring(0, 20) || '那個誰';
   if (result.isUpdate) {
