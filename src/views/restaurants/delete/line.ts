@@ -8,7 +8,7 @@ export default async function RestaurantsDeleteLine(context) {
 
   const restaurants = context.viewModel.restaurants;
   if (restaurants == null || restaurants.length == 0) {
-    await context.sendText(`RestaurantsDeleteLine壞惹`, textQuickReply('餐廳說明'));
+    await context.sendText(`刪除餐廳失敗，請輸入有效的餐廳名稱。`, textQuickReply('餐廳說明'));
     return;
   }
 

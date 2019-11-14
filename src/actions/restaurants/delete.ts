@@ -40,7 +40,9 @@ export default async function RestaurantsDelete(context, { match }) {
   }
 
   const restaurants = await Promise.all(
-    name.split(/[/\s]+/).map(async function(name) {
+    name.split(/[/\s]+/)
+        .filter(name=>name.length > 0)
+        .map(async function(name) {
       return await deleteRestaurant(channel, name);
     }),
   );

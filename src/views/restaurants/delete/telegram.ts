@@ -6,7 +6,7 @@ export default async function RestaurantsDeleteTelegram(context) {
 
   const restaurants = context.viewModel.restaurants;
   if (restaurants == null || restaurants.length == 0) {
-    await context.sendText(`RestaurantsDeleteText壞惹`);
+    await context.sendText(`刪除餐廳失敗，請輸入有效的餐廳名稱。`);
     return;
   }
 

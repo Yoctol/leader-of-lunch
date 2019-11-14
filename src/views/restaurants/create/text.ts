@@ -6,7 +6,7 @@ export default async function RestaurantsCreateText(context) {
 
   const restaurants = context.viewModel.restaurants;
   if (restaurants == null || restaurants.length == 0) {
-    await context.sendText(`RestaurantsCreateText壞惹`);
+    await context.sendText(`新增餐廳失敗，請輸入有效的餐廳名稱。`);
     return;
   }
 
