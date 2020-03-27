@@ -3,7 +3,7 @@
   "version": "0.1.15",
   "private": true,
   "scripts": {
-    "dev": "npx bottender dev",
+    "dev": "tsc -w & npx bottender dev",
     "lint": "eslint '*/**/*.ts' --fix",
     "start": "bottender start",
     "test": "jest",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@sentry/node": "5.8.0",
     "@types/node": "^12.11.7",
-    "bottender": "1.0.0-alpha.22",
+    "bottender": "^1.3.0",
     "class-transformer": "^0.2.3",
     "lodash": "^4.17.15",
     "pg": "^7.12.1",

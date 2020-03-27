@@ -1,6 +1,6 @@
 import linkBubble from '../../shared/linkBubble'
 
-export default async function ReadmeText(context) {
+export default async function ReadmeLine(context) {
   const documents = context.viewModel.documents
   const contents = documents.map((doc)=>{
     const bubbleContents:any = [

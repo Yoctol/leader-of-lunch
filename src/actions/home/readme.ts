@@ -63,7 +63,7 @@ export default async function Readme(context, { match }) {
         },
         {
           title: '取消投票',
-          description: '說出「pass」即可取消投票。'
+          description: '說出「pass」或「想一下」即可取消投票。'
         }
       ]
     }

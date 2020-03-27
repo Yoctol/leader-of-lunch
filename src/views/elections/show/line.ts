@@ -37,7 +37,7 @@ function optionList(options){
   return chunkedOptions.map(options => optionRow(options, chunkNumber))
 }
 
-export default async function ElectionsCreateLine(context) {
+export default async function ElectionsShowLine(context) {
   const election = context.viewModel.election;
   const options = sortBy(election.options, o=>o.id);
 

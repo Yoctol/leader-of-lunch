@@ -1,8 +1,15 @@
 export default async function ElectionsShowText(context) {
-  const options = context.viewModel.options;
+  const election = context.viewModel.election;
+  if (election == null) {
+    await context.sendText('目前沒有午餐會議，請說「餓了」來發起午餐會議。');
+    return;
+  }
 
-  if (options == null) {
-    await context.sendText('你還沒吃過午餐，請先吃一波午餐再查看午餐會議結果');
+  let options = election.options;
+  options = options.filter((o)=>o.votes.length > 0)
+
+  if (options == null || options.length == 0) {
+    await context.sendText(`第 ${election.index} 次午餐結論：目前還沒有任何人投票。`);
     return;
   }
 

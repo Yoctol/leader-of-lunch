@@ -16,6 +16,10 @@ export default async function VotesDelete(context) {
 
   if (!election.options.map((o)=> o.id).includes(lastVote?.option?.id)) return;
   await lastVote.remove();
+  if(context.text.indexOf('想一下')>=0){
+    await context.sendText(`${userName}陷入了選擇障礙，大家等他一下好嗎？`);
+  }else{
+    await context.sendText(`${userName}說他不吃惹`);
+  }
 
-  await context.sendText(`${userName}說他不吃惹`);
 };

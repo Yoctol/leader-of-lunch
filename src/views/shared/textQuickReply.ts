@@ -11,18 +11,15 @@ function toTextAction(text){
   }
 }
 
-export default function textQuickReply(texts){
-  if (isArray(texts)){
-    return {
-      quickReply: {
-        items: texts.map(toTextAction)
-      }
-    }
-  }else{
-    return {
-      quickReply: {
-        items: [toTextAction(texts)]
-      }
+export default function textQuickReply(textOrTexts){
+  let texts = textOrTexts
+  if (!isArray(texts)){
+    texts = [texts]
+  }
+
+  return {
+    quickReply: {
+      items: texts.map(toTextAction)
     }
   }
 }

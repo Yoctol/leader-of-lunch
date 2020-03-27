@@ -33,7 +33,7 @@ export default async function ActionsRouter() {
     text(/^(所有)?餐廳/, restaurantIndex),
     text(/^新增(?<name>[\s\S]+)/, restaurantCreate),
     text(/^刪除(?<name>[\s\S]+)/, restaurantDelete),
-    text(/^不吃|pass/, voteDelete),
+    text(/^不吃|pass|(再)?想一下$/, voteDelete),
     text(/吃別的|吃其他的/, optionsCreateRandom),
     text(/^想吃\s*(?<name>.+)$/, optionCreate),
     text(/^(餓|吃|午餐)/, electionCreate),
