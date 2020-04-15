@@ -1,3 +1,5 @@
+import { LineTypes } from 'bottender';
+
 export default {
   "type": "bubble",
   "body": {
@@ -55,4 +57,4 @@ export default {
       }
     ]
   }
-}
+} as LineTypes.FlexBubble;

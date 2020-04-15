@@ -1,3 +1,4 @@
+import { LineContext } from 'bottender';
 import { chunk, sortBy } from 'lodash';
 import textQuickReply from '../../shared/textQuickReply'
 

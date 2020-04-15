@@ -1,3 +1,5 @@
+import { LineContext } from 'bottender';
+
 import textQuickReply from '../../shared/textQuickReply'
 
 export default async function IndexLine(context) {

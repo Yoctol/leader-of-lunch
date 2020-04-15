@@ -1,6 +1,8 @@
+import { LineContext } from 'bottender';
+
 import textQuickReply from "../../shared/textQuickReply";
 
-export default async function RestaurantsCreateLine(context) {
+export default async function RestaurantsCreateLine(context: LineContext) {
   if (context.viewModel == undefined) {
     await context.sendText(`新增餐廳失敗。`, textQuickReply('餐廳說明'));
     return;

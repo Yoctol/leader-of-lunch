@@ -1,4 +1,6 @@
-export default async function RestaurantsCreateText(context) {
+import { Context } from 'bottender';
+
+export default async function RestaurantsCreateText(context: Context<any, any>) {
   if (context.viewModel == undefined) {
     await context.sendText(`新增餐廳失敗。`);
     return;

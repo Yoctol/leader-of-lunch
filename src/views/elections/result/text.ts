@@ -1,4 +1,6 @@
-export default async function ElectionsShowText(context) {
+import { Context } from 'bottender';
+
+export default async function ElectionsShowText(context: Context<any, any>) {
   const election = context.viewModel.election;
   if (election == null) {
     await context.sendText('目前沒有午餐會議，請說「餓了」來發起午餐會議。');

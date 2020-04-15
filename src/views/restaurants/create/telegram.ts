@@ -1,4 +1,6 @@
-export default async function RestaurantsCreateTelegram(context) {
+import { TelegramContext } from 'bottender';
+
+export default async function RestaurantsCreateTelegram(context: TelegramContext) {
   if (context.viewModel == undefined) {
     await context.sendText(`新增餐廳失敗。`);
     return;

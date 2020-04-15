@@ -1,7 +1,8 @@
+import { LineContext } from 'bottender';
 
 import textQuickReply from '../../shared/textQuickReply'
 
-export default async function ElectionsResultLine(context) {
+export default async function ElectionsResultLine(context: LineContext) {
   const election = context.viewModel.election;
   if (election == null) {
     await context.sendText('目前沒有午餐會議，請說「餓了」來發起午餐會議。',

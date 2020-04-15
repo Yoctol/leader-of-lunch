@@ -1,4 +1,6 @@
-export default async function ElectionsResultTelegram(context) {
+import { TelegramContext } from 'bottender';
+
+export default async function ElectionsResultTelegram(context: TelegramContext) {
   const election = context.viewModel.election;
   if (election == null) {
     await context.sendText('目前沒有午餐會議，請說「餓了」來發起午餐會議。');
