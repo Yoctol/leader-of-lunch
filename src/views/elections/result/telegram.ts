@@ -13,7 +13,12 @@ export default async function ElectionsResultTelegram(context) {
     return;
   }
 
+
   const result = options.map(o => `${o.restaurant.name}: ${o.votes.length}`).join('\n');
   const conclusion = `結論：吃${options[0].restaurant.name}`;
-  await context.sendText(`本日午餐會議結果：\n${result}\n\n${conclusion}`);
+  await context.sendText(`本日午餐會議結果：\n${result}\n\n${conclusion}`, {
+    replyMarkup: {
+      removeKeyboard: true,
+    },
+  });
 }
